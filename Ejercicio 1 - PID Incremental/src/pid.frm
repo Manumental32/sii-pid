@@ -5,12 +5,12 @@ Begin VB.Form FormPid
    ClientHeight    =   8715
    ClientLeft      =   3045
    ClientTop       =   2415
-   ClientWidth     =   10485
+   ClientWidth     =   10020
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   8715
-   ScaleWidth      =   10485
+   ScaleWidth      =   10020
    Begin VB.TextBox zoomMax 
       Height          =   375
       Left            =   3480
@@ -71,27 +71,30 @@ Begin VB.Form FormPid
       Width           =   1215
    End
    Begin VB.PictureBox GraficoPV 
+      AutoRedraw      =   -1  'True
+      AutoSize        =   -1  'True
       BackColor       =   &H00000000&
-      Height          =   3165
+      DragMode        =   1  'Automatic
+      Height          =   3000
       Left            =   600
-      ScaleHeight     =   207
+      ScaleHeight     =   196
       ScaleMode       =   3  'Pixel
-      ScaleWidth      =   279
+      ScaleWidth      =   263
       TabIndex        =   35
       Top             =   1560
-      Width           =   4245
+      Width           =   4000
    End
    Begin VB.PictureBox GraficoSalida 
       BackColor       =   &H00000000&
       FillColor       =   &H0000FFFF&
       FillStyle       =   0  'Solid
       Height          =   3165
-      Left            =   5880
+      Left            =   5400
       ScaleHeight     =   207
       ScaleMode       =   3  'Pixel
       ScaleWidth      =   271
       TabIndex        =   34
-      Top             =   1560
+      Top             =   1440
       Width           =   4125
    End
    Begin VB.Timer Control 
@@ -107,9 +110,9 @@ Begin VB.Form FormPid
    Begin VB.CommandButton CargarSP 
       Caption         =   "CargarSP"
       Height          =   375
-      Left            =   12120
+      Left            =   7200
       TabIndex        =   33
-      Top             =   4440
+      Top             =   3840
       Width           =   855
    End
    Begin VB.TextBox tiempolazo 
@@ -268,7 +271,7 @@ Begin VB.Form FormPid
       Height          =   615
       Left            =   5400
       TabIndex        =   46
-      Top             =   5280
+      Top             =   5160
       Width           =   4455
    End
    Begin VB.Label Label40 
@@ -285,9 +288,9 @@ Begin VB.Form FormPid
          Strikethrough   =   0   'False
       EndProperty
       Height          =   315
-      Left            =   5520
+      Left            =   5040
       TabIndex        =   43
-      Top             =   4440
+      Top             =   4320
       Width           =   285
    End
    Begin VB.Label Label41 
@@ -304,9 +307,9 @@ Begin VB.Form FormPid
          Strikethrough   =   0   'False
       EndProperty
       Height          =   285
-      Left            =   5400
+      Left            =   4920
       TabIndex        =   42
-      Top             =   1605
+      Top             =   1485
       Width           =   435
    End
    Begin VB.Label Label42 
@@ -323,9 +326,9 @@ Begin VB.Form FormPid
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   6000
+      Left            =   5520
       TabIndex        =   41
-      Top             =   4680
+      Top             =   4560
       Width           =   4155
    End
    Begin VB.Label Label43 
@@ -361,12 +364,12 @@ Begin VB.Form FormPid
          Strikethrough   =   0   'False
       EndProperty
       Height          =   285
-      Left            =   5400
+      Left            =   4920
       TabIndex        =   39
-      Top             =   3000
+      Top             =   2880
       Width           =   435
    End
-   Begin VB.Label Label30 
+   Begin VB.Label LabelZoomMin 
       Alignment       =   1  'Right Justify
       BackStyle       =   0  'Transparent
       Caption         =   "0"
@@ -385,7 +388,7 @@ Begin VB.Form FormPid
       Top             =   4440
       Width           =   285
    End
-   Begin VB.Label Label45 
+   Begin VB.Label LabelZoomMax 
       Alignment       =   1  'Right Justify
       BackStyle       =   0  'Transparent
       Caption         =   "600"
@@ -404,7 +407,7 @@ Begin VB.Form FormPid
       Top             =   1605
       Width           =   525
    End
-   Begin VB.Label Label48 
+   Begin VB.Label LabelZoomMiddle 
       Alignment       =   1  'Right Justify
       BackStyle       =   0  'Transparent
       Caption         =   "300"
@@ -716,9 +719,9 @@ Begin VB.Form FormPid
          Strikethrough   =   0   'False
       EndProperty
       Height          =   405
-      Left            =   5880
+      Left            =   5280
       TabIndex        =   15
-      Top             =   7440
+      Top             =   7800
       Width           =   915
    End
    Begin VB.Label Label29 
@@ -736,9 +739,9 @@ Begin VB.Form FormPid
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   330
-      Left            =   6240
+      Left            =   5640
       TabIndex        =   14
-      Top             =   7080
+      Top             =   7440
       Width           =   165
    End
    Begin VB.Label Label22 
@@ -925,8 +928,12 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Dim entradavalv, salidavalv, error, error1, error2, kp, ki, kd, salida, salida1, pv, incpro, incint, incder As Double
-Dim modo, suministro, x, y, tlazo, n, a, b As Integer
-Dim grafsalida(1000), grafpv(1000), tiempo, sp, deltaT, PvPunto As Long
+Dim modo, suministro, X, Y, tlazo, n, a, b, zoomAux As Integer
+Dim grafsalida(1000), grafpv(1000), tiempo, sp, deltaT, PvPunto, zoomScrollBar As Long
+
+
+Dim sngRatio As Single
+
 
 Private Sub BtnManual_Click()
 IndManual.FillStyle = 0
@@ -959,7 +966,7 @@ Private Sub CargarSP_Click()
 End Sub
 
 
-Private Sub Form_load()
+Private Sub Form_Load()
 FormPid.Left = (Screen.Width / 2) - (FormPid.Width / 2)
 FormPid.Top = (Screen.Height / 2) - (FormPid.Height / 2)
 
@@ -982,7 +989,9 @@ PvPunto = 0
 
 zoomMin = 0
 zoomMax = 600
+zoomAux = 600
 
+zoomScrollBar = 1
 
 suministro = 1000
 suministrocap.Caption = suministro
@@ -1009,13 +1018,13 @@ ValorSP = BarraSP.Value
 sp = BarraSP.Value
 
 GraficoPV.Cls
-GraficoPV.ScaleMode = 3
-GraficoPV.ScaleHeight = 600
-GraficoPV.ScaleWidth = 1000
+GraficoPV.ScaleMode = 3 'modo PX
+GraficoPV.ScaleHeight = 600 'alto
+GraficoPV.ScaleWidth = 1000 'ancho
 GraficoPV.AutoRedraw = True
 GraficoPV.ForeColor = vbRed
 GraficoPV.DrawStyle = 0
-GraficoPV.DrawWidth = 2
+GraficoPV.DrawWidth = 2 'ancho de linea
 
 GraficoSalida.Cls
 GraficoSalida.ScaleMode = 3
@@ -1154,19 +1163,25 @@ End Sub
 Private Sub graficar()
 GraficoPV.Cls
 grafpv(1000) = pv
-For x = 0 To 999
-    grafpv(x) = grafpv(x + 1)
-    GraficoPV.PSet (x, zoomMax - (grafpv(x)))
-Next x
-GraficoPV.Line (0, zoomMax - sp)-(1000, zoomMax - sp), vbYellow
+
+For X = 0 To 999
+    grafpv(X) = grafpv(X + 1)
+    'GraficoPV.Scale (0, zoomMin)-(999, zoomMax)
+    GraficoPV.Scale (0, zoomMin)-(999, zoomMax)
+    'GraficoPV.PSet (X, zoomMax - (grafpv(X))) 'dibuja un punto en G.PSet(x,y)
+    zoomAux = Conversion.Int(zoomMax) + Conversion.Int(zoomMin)
+    GraficoPV.PSet (X, (zoomAux - (grafpv(X)))) 'dibuja un punto en G.PSet(x,y)
+Next X
+
+GraficoPV.Line (0, zoomMax - sp + zoomMin)-(1000, zoomMax - sp + zoomMin), vbYellow 'linea horizontal del SetPoint
 
 GraficoSalida.Cls
 
 grafsalida(1000) = PorcSalida
-For x = 0 To 999
-    grafsalida(x) = grafsalida(x + 1)
-    GraficoSalida.PSet (x, 2200 - (grafsalida(x)))
-Next x
+For X = 0 To 999
+    grafsalida(X) = grafsalida(X + 1)
+    GraficoSalida.PSet (X, 2200 - (grafsalida(X)))
+Next X
 End Sub
 
 Private Sub calcerror()
@@ -1187,3 +1202,17 @@ Private Sub ValorSP_Change()
     BarraSP.Value = ValorSP
 End Sub
 
+
+Private Sub zoomMax_Change()
+    If zoomMin.Text = "" Then zoomMin.Text = 0
+    If zoomMax.Text = "" Then zoomMax.Text = 0
+    LabelZoomMax = zoomMax.Text
+    LabelZoomMiddle.Caption = Conversion.Int(zoomMin.Text) + Conversion.Int(zoomMax.Text - zoomMin.Text) / 2
+End Sub
+
+Private Sub zoomMin_Change()
+    If zoomMin.Text = "" Then zoomMin.Text = 0
+    If zoomMax.Text = "" Then zoomMax.Text = 0
+    LabelZoomMin = zoomMin.Text
+    LabelZoomMiddle.Caption = Conversion.Int(zoomMin.Text) + Conversion.Int(zoomMax.Text - zoomMin.Text) / 2
+End Sub
