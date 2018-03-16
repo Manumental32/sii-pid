@@ -5,16 +5,24 @@ Begin VB.Form FormPid
    ClientHeight    =   8715
    ClientLeft      =   3045
    ClientTop       =   2415
-   ClientWidth     =   10020
+   ClientWidth     =   10740
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   8715
-   ScaleWidth      =   10020
+   ScaleWidth      =   10740
+   Begin VB.CommandButton OK 
+      Caption         =   "OK"
+      Height          =   615
+      Left            =   5160
+      TabIndex        =   49
+      Top             =   6000
+      Width           =   1215
+   End
    Begin VB.TextBox zoomMax 
       Height          =   375
       Left            =   3480
-      TabIndex        =   48
+      TabIndex        =   46
       Text            =   "600"
       Top             =   1200
       Width           =   1095
@@ -22,7 +30,7 @@ Begin VB.Form FormPid
    Begin VB.TextBox zoomMin 
       Height          =   285
       Left            =   840
-      TabIndex        =   47
+      TabIndex        =   45
       Text            =   "0"
       Top             =   1200
       Width           =   975
@@ -41,7 +49,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   375
       Left            =   3360
-      TabIndex        =   45
+      TabIndex        =   43
       Top             =   6600
       Width           =   1215
    End
@@ -66,7 +74,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   495
       Left            =   3360
-      TabIndex        =   44
+      TabIndex        =   42
       Top             =   5400
       Width           =   1215
    End
@@ -80,7 +88,7 @@ Begin VB.Form FormPid
       ScaleHeight     =   196
       ScaleMode       =   3  'Pixel
       ScaleWidth      =   263
-      TabIndex        =   35
+      TabIndex        =   33
       Top             =   1560
       Width           =   4000
    End
@@ -93,7 +101,7 @@ Begin VB.Form FormPid
       ScaleHeight     =   207
       ScaleMode       =   3  'Pixel
       ScaleWidth      =   271
-      TabIndex        =   34
+      TabIndex        =   32
       Top             =   1440
       Width           =   4125
    End
@@ -111,27 +119,9 @@ Begin VB.Form FormPid
       Caption         =   "CargarSP"
       Height          =   375
       Left            =   7200
-      TabIndex        =   33
+      TabIndex        =   31
       Top             =   3840
       Width           =   855
-   End
-   Begin VB.TextBox tiempolazo 
-      Alignment       =   2  'Center
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   14.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   400
-      Left            =   960
-      TabIndex        =   21
-      Text            =   "500"
-      Top             =   7800
-      Width           =   915
    End
    Begin VB.HScrollBar BarraSP 
       Height          =   255
@@ -200,7 +190,7 @@ Begin VB.Form FormPid
          Strikethrough   =   0   'False
       EndProperty
       Height          =   400
-      Left            =   960
+      Left            =   840
       TabIndex        =   6
       Text            =   "0"
       Top             =   6960
@@ -236,9 +226,9 @@ Begin VB.Form FormPid
          Strikethrough   =   0   'False
       EndProperty
       Height          =   405
-      Left            =   960
+      Left            =   840
       TabIndex        =   4
-      Text            =   "0.8"
+      Text            =   "25"
       Top             =   5280
       Width           =   915
    End
@@ -254,7 +244,7 @@ Begin VB.Form FormPid
       Caption         =   "zoomMax"
       Height          =   255
       Left            =   3480
-      TabIndex        =   50
+      TabIndex        =   48
       Top             =   960
       Width           =   1095
    End
@@ -262,7 +252,7 @@ Begin VB.Form FormPid
       Caption         =   "Zoom Min"
       Height          =   255
       Left            =   840
-      TabIndex        =   49
+      TabIndex        =   47
       Top             =   960
       Width           =   975
    End
@@ -270,7 +260,7 @@ Begin VB.Form FormPid
       Caption         =   "Ingresar valores decimales solo con (punto) '.' Ejemplo: 0.1"
       Height          =   615
       Left            =   5400
-      TabIndex        =   46
+      TabIndex        =   44
       Top             =   5160
       Width           =   4455
    End
@@ -289,7 +279,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   315
       Left            =   5040
-      TabIndex        =   43
+      TabIndex        =   41
       Top             =   4320
       Width           =   285
    End
@@ -308,7 +298,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   285
       Left            =   4920
-      TabIndex        =   42
+      TabIndex        =   40
       Top             =   1485
       Width           =   435
    End
@@ -327,7 +317,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   255
       Left            =   5520
-      TabIndex        =   41
+      TabIndex        =   39
       Top             =   4560
       Width           =   4155
    End
@@ -346,7 +336,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   255
       Left            =   720
-      TabIndex        =   40
+      TabIndex        =   38
       Top             =   4680
       Width           =   4215
    End
@@ -365,7 +355,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   285
       Left            =   4920
-      TabIndex        =   39
+      TabIndex        =   37
       Top             =   2880
       Width           =   435
    End
@@ -384,7 +374,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   315
       Left            =   240
-      TabIndex        =   38
+      TabIndex        =   36
       Top             =   4440
       Width           =   285
    End
@@ -403,7 +393,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   315
       Left            =   0
-      TabIndex        =   37
+      TabIndex        =   35
       Top             =   1605
       Width           =   525
    End
@@ -422,7 +412,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   315
       Left            =   0
-      TabIndex        =   36
+      TabIndex        =   34
       Top             =   3000
       Width           =   525
    End
@@ -442,7 +432,7 @@ Begin VB.Form FormPid
       ForeColor       =   &H00000000&
       Height          =   225
       Left            =   3240
-      TabIndex        =   32
+      TabIndex        =   30
       Top             =   7320
       Width           =   105
    End
@@ -462,7 +452,7 @@ Begin VB.Form FormPid
       ForeColor       =   &H00000000&
       Height          =   225
       Left            =   4080
-      TabIndex        =   31
+      TabIndex        =   29
       Top             =   7320
       Width           =   420
    End
@@ -482,7 +472,7 @@ Begin VB.Form FormPid
       ForeColor       =   &H00000000&
       Height          =   225
       Left            =   3480
-      TabIndex        =   30
+      TabIndex        =   28
       Top             =   5160
       Width           =   915
    End
@@ -502,7 +492,7 @@ Begin VB.Form FormPid
       ForeColor       =   &H00000000&
       Height          =   225
       Left            =   4080
-      TabIndex        =   29
+      TabIndex        =   27
       Top             =   6120
       Width           =   315
    End
@@ -522,7 +512,7 @@ Begin VB.Form FormPid
       ForeColor       =   &H00000000&
       Height          =   225
       Left            =   3360
-      TabIndex        =   28
+      TabIndex        =   26
       Top             =   6120
       Width           =   105
    End
@@ -542,7 +532,7 @@ Begin VB.Form FormPid
       ForeColor       =   &H00000000&
       Height          =   225
       Left            =   12600
-      TabIndex        =   27
+      TabIndex        =   25
       Top             =   7680
       Width           =   315
    End
@@ -562,7 +552,7 @@ Begin VB.Form FormPid
       ForeColor       =   &H00000000&
       Height          =   225
       Left            =   11760
-      TabIndex        =   26
+      TabIndex        =   24
       Top             =   7680
       Width           =   105
    End
@@ -582,7 +572,7 @@ Begin VB.Form FormPid
       ForeColor       =   &H00000000&
       Height          =   225
       Left            =   3375
-      TabIndex        =   25
+      TabIndex        =   23
       Top             =   6360
       Width           =   915
    End
@@ -602,7 +592,7 @@ Begin VB.Form FormPid
       ForeColor       =   &H00000000&
       Height          =   225
       Left            =   11880
-      TabIndex        =   24
+      TabIndex        =   22
       Top             =   6720
       Width           =   915
    End
@@ -621,7 +611,7 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   405
       Left            =   13440
-      TabIndex        =   23
+      TabIndex        =   21
       Top             =   5640
       Width           =   1185
    End
@@ -640,29 +630,9 @@ Begin VB.Form FormPid
       EndProperty
       Height          =   405
       Left            =   3240
-      TabIndex        =   22
+      TabIndex        =   20
       Top             =   7680
       Width           =   1185
-   End
-   Begin VB.Label Label5 
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "T"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   14.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00000000&
-      Height          =   330
-      Left            =   1320
-      TabIndex        =   20
-      Top             =   7440
-      Width           =   315
    End
    Begin VB.Label Label2 
       Alignment       =   2  'Center
@@ -719,7 +689,7 @@ Begin VB.Form FormPid
          Strikethrough   =   0   'False
       EndProperty
       Height          =   405
-      Left            =   5280
+      Left            =   840
       TabIndex        =   15
       Top             =   7800
       Width           =   915
@@ -739,7 +709,7 @@ Begin VB.Form FormPid
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   330
-      Left            =   5640
+      Left            =   1200
       TabIndex        =   14
       Top             =   7440
       Width           =   165
@@ -929,10 +899,18 @@ Attribute VB_Exposed = False
 Option Explicit
 Dim entradavalv, salidavalv, error, error1, error2, kp, ki, kd, salida, salida1, pv, incpro, incint, incder As Double
 Dim modo, suministro, X, Y, tlazo, n, a, b, zoomAux As Integer
-Dim grafsalida(1000), grafpv(1000), tiempo, sp, deltaT, PvPunto, zoomScrollBar As Long
-
+Dim grafsalida(1000), grafpv(1000), tiempo, sp, deltaT, PvPunto, zoomScrollBar, Start As Long
 
 Dim sngRatio As Single
+
+Private Declare Function GetTickCount Lib "kernel32" () As Long
+
+Private Sub Pause(Interval As Long)
+    Start = GetTickCount
+    Do While GetTickCount < Start + Interval
+        DoEvents
+    Loop
+End Sub
 
 
 Private Sub BtnManual_Click()
@@ -985,6 +963,7 @@ n = 0
 a = -5
 b = 1
 deltaT = 0.015
+tlazo = 15
 PvPunto = 0
 
 zoomMin = 0
@@ -1012,7 +991,7 @@ ki = ValorInt.Text
 kd = ValorDeriv.Text
 
 'BarraSP.Value = 1000
-BarraSP.Value = 300
+BarraSP.Value = 100
 
 ValorSP = BarraSP.Value
 sp = BarraSP.Value
@@ -1048,7 +1027,7 @@ End Sub
 
 Private Sub PorcSalida_Change()
     If PorcSalida = "" Then PorcSalida = 0
-    If PorcSalida > 2000 Then PorcSalida = 2000
+    'If PorcSalida > 2000 Then PorcSalida = 2000
     If PorcSalida < 0 Then PorcSalida = 0
     BarraSalida.Value = PorcSalida
 End Sub
@@ -1058,6 +1037,7 @@ Private Sub Simu_Timer()
 entradavalv = (BarraEntrada.Value * (suministro / 100)) / tiempo
 
 salidavalv = (BarraSalida.Value) / tiempo
+'pv = pv + entradavalv - salidavalv
 
 
 If pv < 0 Then pv = 0
@@ -1103,14 +1083,6 @@ ki = Val(ValorInt)
       End If
 kd = Val(ValorDeriv)
 
-   If tiempolazo < 300 Then
-   tiempolazo = 300
-   End If
-      If tiempolazo > 1000 Then
-      tiempolazo = 1000
-      End If
-tlazo = Val(tiempolazo)
-
 error2 = error1
 error1 = error
 calcerror
@@ -1142,13 +1114,15 @@ End If
 
 
 BarraSalida.Value = salida
-'PorcSalida = Round(2000 - salida, 2)
 PorcSalida = BarraSalida.Value
 
-PvPunto = a * pv + b * PorcSalida
-pv = pv + PvPunto * deltaT
+PvPunto = a * pv + b * salida
 
 graficar
+pv = pv + PvPunto * deltaT
+
+Pause (1000 * deltaT) 'Pause for 1 seconds
+
 End Sub
 
 Private Sub Control_Timer()
@@ -1169,7 +1143,8 @@ For X = 0 To 999
     'GraficoPV.Scale (0, zoomMin)-(999, zoomMax)
     GraficoPV.Scale (0, zoomMin)-(999, zoomMax)
     'GraficoPV.PSet (X, zoomMax - (grafpv(X))) 'dibuja un punto en G.PSet(x,y)
-    zoomAux = Conversion.Int(zoomMax) + Conversion.Int(zoomMin)
+    zoomAux = Val(zoomMax) + Val(zoomMin)
+    
     GraficoPV.PSet (X, (zoomAux - (grafpv(X)))) 'dibuja un punto en G.PSet(x,y)
 Next X
 
@@ -1186,7 +1161,7 @@ End Sub
 
 Private Sub calcerror()
 error = sp - pv
-ValorError.Caption = Conversion.Int(error)
+ValorError.Caption = Val(error)
 End Sub
 
 
@@ -1199,7 +1174,6 @@ Private Sub ValorSP_Change()
         ValorSP = 400
     End If
     
-    BarraSP.Value = ValorSP
 End Sub
 
 
@@ -1216,3 +1190,4 @@ Private Sub zoomMin_Change()
     LabelZoomMin = zoomMin.Text
     LabelZoomMiddle.Caption = Conversion.Int(zoomMin.Text) + Conversion.Int(zoomMax.Text - zoomMin.Text) / 2
 End Sub
+
