@@ -11,13 +11,17 @@ Begin VB.Form FormPid
    MinButton       =   0   'False
    ScaleHeight     =   8715
    ScaleWidth      =   10740
-   Begin VB.CommandButton OK 
-      Caption         =   "OK"
-      Height          =   615
-      Left            =   5160
+   Begin VB.PictureBox Picture1 
+      Height          =   2295
+      Left            =   5520
+      Picture         =   "pid.frx":0000
+      ScaleHeight     =   149
+      ScaleMode       =   0  'User
+      ScaleTop        =   1
+      ScaleWidth      =   7.812
       TabIndex        =   49
-      Top             =   6000
-      Width           =   1215
+      Top             =   5880
+      Width           =   3915
    End
    Begin VB.TextBox zoomMax 
       Height          =   375
@@ -1097,21 +1101,6 @@ salida1 = salida
 TxtSalida.Caption = Round(salida, 2)
 
 
-If salida > 2000 Then
-  salida = 2000
-End If
-If salida < 0 Then
-  salida = 0
-End If
-
-
-If salida1 > 2000 Then
-  salida1 = 2000
-End If
-If salida1 < 0 Then
-  salida1 = 0
-End If
-
 
 BarraSalida.Value = salida
 PorcSalida = BarraSalida.Value
@@ -1173,6 +1162,8 @@ Private Sub ValorSP_Change()
     If ValorSP > 400 Then
         ValorSP = 400
     End If
+    BarraSP.Value = ValorSP
+    sp = BarraSP.Value
     
 End Sub
 
